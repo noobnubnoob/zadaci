@@ -5,6 +5,7 @@ import abctech.interview.tasks.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +20,12 @@ public class AccountServiceImpl implements AccountService{
     }
     @Override
     public List<Account> findAll() {
-        System.out.println("FIND ALL");
         return accountRepository.findAll();
+    }
+
+    @Override
+    public List<Account> findByDatumZatvaranjaBefore(Date closingDate) {
+        return accountRepository.findByDatumZatvaranjaBefore(closingDate);
     }
 
     @Override

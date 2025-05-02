@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -23,7 +24,16 @@ public class AccountController {
         // get the accounts from db
         List<Account> theAccounts = accountService.findAll();
 
-        System.out.println(theAccounts);
+        // add to the spring model
+        theModel.addAttribute("accounts", theAccounts);
+
+        return "accounts/list-accounts";
+    }
+
+    @GetMapping("/listByDate")
+    public String listAccountsByClosingDate(@RequestParam("closingDate") Date closingDate, Model theModel) {
+        List<Account> theAccounts = accountService.findByDatumZatvaranjaBefore(closingDate);
+
         // add to the spring model
         theModel.addAttribute("accounts", theAccounts);
 
@@ -58,12 +68,25 @@ public class AccountController {
     @PostMapping("/save")
     public String saveAccount(@ModelAttribute("account") Account theAccount) {
 
+        // validation
+        if (!isIbanValid(theAccount.getIban())) {
+
+        }
+
         // save the Account
         accountService.save(theAccount);
 
         // use a redirect to prevent duplicate submissions
         return "redirect:/accounts/list";
     }
+
+    public boolean isIbanValid(String iban) {
+        if (iban.matches("^[A-Z]{2}\\d+$")) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     @PostMapping("/delete")
     public String delete(@RequestParam("accountId") int theId) {

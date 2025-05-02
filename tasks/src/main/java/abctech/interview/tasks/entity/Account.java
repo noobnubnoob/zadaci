@@ -92,4 +92,8 @@ public class Account {
     public void setDatumZatvaranja(LocalDate datumZatvaranja) {
         this.datumZatvaranja = datumZatvaranja;
     }
+
+    public void setDatumZatvaranja(Date datumZatvaranja) {
+        this.datumZatvaranja = datumZatvaranja.toLocalDate();
+    }
 }
