@@ -1,7 +1,6 @@
 package abctech.interview.tasks.arrayutil;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,13 +29,10 @@ public class ArrayOperationsTests {
     @DisplayName("Array sort")
     void testSortArray() {
         ArrayList<Integer> expectedArrayAsc = new ArrayList<>(Arrays.asList(-16, 6, 19));
-        ArrayList<Integer> expectedArrayDesc = new ArrayList<>(Arrays.asList(19,6,-16));
-        arrayOperations.sortArray(testArray, true);
+        arrayOperations.sortArray(testArray);
 
         Assertions.assertArrayEquals(expectedArrayAsc.toArray(), testArray.toArray());
 
-        arrayOperations.sortArray(testArray, false);
-        Assertions.assertArrayEquals(expectedArrayDesc.toArray(), testArray.toArray());
     }
 
     @Test
