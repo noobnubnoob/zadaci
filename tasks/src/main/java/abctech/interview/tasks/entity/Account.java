@@ -1,10 +1,11 @@
 package abctech.interview.tasks.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -20,18 +21,23 @@ public class Account {
     private Integer racunId;
 
     @Column(name="iban")
+    @NotNull(message="is required")
+    @Pattern(regexp = "^[A-Z]{2}\\d+$", message = "IBAN format")
     private String iban;
 
     @Column(name="tip_racuna")
+    @Pattern(regexp = "^[0-9]{5}", message = "Must be a number")
     private Integer tipRacuna;
 
     @Column(name="valuta")
+    @Pattern(regexp = "^[A-Z]{5}", message = "Must be 3 letter currency value")
     private String valuta;
 
     @Column(name="klijent_id")
     private Integer klijentId;
 
     @Column(name="datum_otvaranja")
+    @NotNull(message="is required")
     private Date datumOtvaranja;
 
     @Column(name="datum_zatvaranja")

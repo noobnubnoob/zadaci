@@ -2,8 +2,10 @@ package abctech.interview.tasks.controller;
 
 import abctech.interview.tasks.entity.Account;
 import abctech.interview.tasks.service.AccountService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
@@ -66,18 +68,20 @@ public class AccountController {
     }
 
     @PostMapping("/save")
-    public String saveAccount(@ModelAttribute("account") Account theAccount) {
+    public String saveAccount(@Valid @ModelAttribute("account") Account theAccount,
+            BindingResult theBindingResult) {
 
         // validation
-        if (!isIbanValid(theAccount.getIban())) {
+        if (theBindingResult.hasErrors()) {
+            return "accounts/account-form";
+        } else {
 
+            // save the Account
+            accountService.save(theAccount);
+
+            // use a redirect to prevent duplicate submissions
+            return "redirect:/accounts/list";
         }
-
-        // save the Account
-        accountService.save(theAccount);
-
-        // use a redirect to prevent duplicate submissions
-        return "redirect:/accounts/list";
     }
 
     public boolean isIbanValid(String iban) {
