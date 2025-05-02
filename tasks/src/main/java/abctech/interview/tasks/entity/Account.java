@@ -6,7 +6,7 @@ import lombok.Data;
 import java.sql.Date;
 
 @Entity
-@Table(name="employee")
+@Table(name="racun")
 @Data
 public class Account {
     @Id
