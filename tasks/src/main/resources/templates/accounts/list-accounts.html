@@ -25,6 +25,20 @@
         Add Account
     </a>
 
+    <form th:action="@{/accounts/listByDate}" th:method="get">
+        <input type="date" name="date" class="form-control" placeholder="Date" />
+        <button type="submit">Submit</button>
+    </form>
+
+    <!--
+    <input type="date" th:field="*{closingDate}"
+           class="form-control mb-4 w-25" placeholder="Datum zatvaranja">
+    <a th:href="@{/accounts/listByDate}"
+       class="btn btn-primary btn-sm mb-3">
+        Search by date
+    </a>
+    -->
+
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>

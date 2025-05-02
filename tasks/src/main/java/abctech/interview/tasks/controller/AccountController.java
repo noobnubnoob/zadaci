@@ -3,12 +3,14 @@ package abctech.interview.tasks.controller;
 import abctech.interview.tasks.entity.Account;
 import abctech.interview.tasks.service.AccountService;
 import jakarta.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -33,8 +35,15 @@ public class AccountController {
     }
 
     @GetMapping("/listByDate")
-    public String listAccountsByClosingDate(@RequestParam("closingDate") Date closingDate, Model theModel) {
-        List<Account> theAccounts = accountService.findByDatumZatvaranjaBefore(closingDate);
+    public String listAccountsByClosingDate(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                                            Model theModel) {
+        List<Account> theAccounts = null;
+        System.out.println("Closing date: " + date.toString());
+        if (date != null) {
+            theAccounts = accountService.findByDatumZatvaranjaBefore(date);
+        } else {
+            theAccounts = accountService.findAll();
+        }
 
         // add to the spring model
         theModel.addAttribute("accounts", theAccounts);
