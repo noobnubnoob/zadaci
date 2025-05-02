@@ -20,13 +20,13 @@ public class AccountController {
 
     @GetMapping("/list")
     public String listAccounts(Model theModel) {
-        // get the Accounts from db
+        // get the accounts from db
         List<Account> theAccounts = accountService.findAll();
 
         // add to the spring model
-        theModel.addAttribute("Accounts", theAccounts);
+        theModel.addAttribute("accounts", theAccounts);
 
-        return "Accounts/list-Accounts";
+        return "accounts/list-accounts";
     }
 
     @GetMapping("/showFormForAdd")
@@ -35,43 +35,43 @@ public class AccountController {
         // create model attribute to bind form data
         Account theAccount = new Account();
 
-        theModel.addAttribute("Account", theAccount);
+        theModel.addAttribute("account", theAccount);
 
-        return "Accounts/Account-form";
+        return "accounts/account-form";
     }
 
     @PostMapping("/showFormForUpdate")
-    public String showFormForUpdate(@RequestParam("AccountId") int theId,
+    public String showFormForUpdate(@RequestParam("accountId") int theId,
                                     Model theModel) {
 
-        // get the Account from the service
+        // get the accounts from the service
         Account theAccount = accountService.findById(theId);
 
-        // set Account as a model attribute to pre-populate the form
-        theModel.addAttribute("Account", theAccount);
+        // set accounts as a model attribute to pre-populate the form
+        theModel.addAttribute("account", theAccount);
 
         // send over to our form
-        return "Accounts/Account-form";
+        return "accounts/account-form";
     }
 
     @PostMapping("/save")
-    public String saveAccount(@ModelAttribute("Account") Account theAccount) {
+    public String saveAccount(@ModelAttribute("account") Account theAccount) {
 
         // save the Account
         accountService.save(theAccount);
 
         // use a redirect to prevent duplicate submissions
-        return "redirect:/Accounts/list";
+        return "redirect:/accounts/list";
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam("AccountId") int theId) {
+    public String delete(@RequestParam("accountId") int theId) {
 
-        // delete the Account
+        // delete the accounts
         accountService.deleteById(theId);
 
-        // redirect to /Accounts/list
-        return "redirect:/Accounts/list";
+        // redirect to /accounts/list
+        return "redirect:/accounts/list";
 
     }
 }

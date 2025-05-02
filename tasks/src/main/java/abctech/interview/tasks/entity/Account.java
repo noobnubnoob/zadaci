@@ -1,13 +1,15 @@
 package abctech.interview.tasks.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Date;
 
 @Entity
+@Getter
+@Setter
 @Table(name="racun")
-@Data
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +38,16 @@ public class Account {
         this.tipRacuna = tipRacuna;
         this.valuta = valuta;
         this.klijentId = klijentId;
+    }
 
+    public Account(Integer racunId, String iban, Integer tipRacuna, String valuta,
+                   Integer klijentId, Date datumOtvaranja, Date datumZatvaranja) {
+        this.racunId = racunId;
+        this.iban = iban;
+        this.tipRacuna = tipRacuna;
+        this.valuta = valuta;
+        this.klijentId = klijentId;
+        this.datumOtvaranja = datumOtvaranja;
+        this.datumZatvaranja = datumZatvaranja;
     }
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Save Employee</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Employee Directory</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Employee</p>
+
+    <form action="#" th:action="@{/accounts/save}"
+          th:object="${account}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{racunId}" />
+
+        <input type="text" th:field="*{iban}"
+               class="form-control mb-4 w-25" placeholder="IBAN">
+
+        <input type="text" th:field="*{tipRacuna}"
+               class="form-control mb-4 w-25" placeholder="Tip računa">
+
+        <input type="text" th:field="*{valuta}"
+               class="form-control mb-4 w-25" placeholder="Valuta">
+
+        <input type="text" th:field="*{klijentId}"
+               class="form-control mb-4 w-25" placeholder="Klijent ID">
+
+        <input type="text" th:field="*{datumOtvaranja}"
+               class="form-control mb-4 w-25" placeholder="Datum otvaranja">
+
+        <input type="text" th:field="*{datumZatvaranja}"
+               class="form-control mb-4 w-25" placeholder="Datum zatvaranja">
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/accounts/list}">Back to Accounts List</a>
+
+</div>
+
+
+</body>
+
+</html>
