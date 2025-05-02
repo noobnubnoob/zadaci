@@ -5,25 +5,34 @@ import java.util.ArrayList;
 public class ArrayOperations {
 
     /**
-     *
+     * Assumes array is not null
      * @param array
      * @return sum of all elements in array
      */
-    public int arraySum(ArrayList<Double> array) {
-        return 0;
+    public int arraySum(ArrayList<Integer> array) {
+        if (array.isEmpty()) {
+            throw new RuntimeException();
+        }
+
+        int sum = 0;
+        for (Integer value : array) {
+            sum += value;
+        }
+        return sum;
     }
 
     /**
-     * Sorts array passed as variable.
+     * Sorts array passed as variable. Assumes array is not null
      * @param array
+     * @param ascended - true if list should be sorted in ascending order
      * @return sorted array
      */
-    public ArrayList<Integer> sortArray(ArrayList<Integer> array) {
+    public ArrayList<Integer> sortArray(ArrayList<Integer> array, boolean ascended) {
         return array;
     }
 
     /**
-     * Finds and returns array minimum.
+     * Finds and returns array minimum. Assumes array is not null
      * @param array
      * @return
      */
@@ -32,7 +41,7 @@ public class ArrayOperations {
     }
 
     /**
-     * Finds and returns array maximum.
+     * Finds and returns array maximum. Assumes array is not null
      * @param array
      * @return
      */
@@ -41,7 +50,7 @@ public class ArrayOperations {
     }
 
     /**
-     * Calculates and returns arithmetic average of array
+     * Calculates and returns arithmetic average of array. Assumes array is not null
      * @param array
      * @return array average
      */
