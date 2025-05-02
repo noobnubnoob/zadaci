@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("abc")
+@RequestMapping("accounts")
 public class AccountController {
 
     private AccountService accountService;
@@ -23,6 +23,7 @@ public class AccountController {
         // get the accounts from db
         List<Account> theAccounts = accountService.findAll();
 
+        System.out.println(theAccounts);
         // add to the spring model
         theModel.addAttribute("accounts", theAccounts);
 

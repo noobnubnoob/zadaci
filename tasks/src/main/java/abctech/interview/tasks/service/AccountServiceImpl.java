@@ -19,6 +19,7 @@ public class AccountServiceImpl implements AccountService{
     }
     @Override
     public List<Account> findAll() {
+        System.out.println("FIND ALL");
         return accountRepository.findAll();
     }
 
