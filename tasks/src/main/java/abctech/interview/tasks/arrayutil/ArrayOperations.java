@@ -11,7 +11,7 @@ public class ArrayOperations {
      */
     public int arraySum(ArrayList<Integer> array) {
         if (array.isEmpty()) {
-            throw new RuntimeException();
+            throw new RuntimeException("ArrayOperations.arrySum - array is empty");
         }
 
         int sum = 0;
@@ -37,7 +37,19 @@ public class ArrayOperations {
      * @return
      */
     public int arrayMin(ArrayList<Integer> array) {
-        return 0;
+        if (array.isEmpty()) {
+            throw new RuntimeException("ArrayOperations.arrayMin - array is empty");
+        }
+
+        int min = array.get(0);
+
+        for (Integer value : array) {
+            if (value < min) {
+                min = value;
+            }
+        }
+
+        return min;
     }
 
     /**
@@ -46,7 +58,19 @@ public class ArrayOperations {
      * @return
      */
     public int arrayMax(ArrayList<Integer> array) {
-        return 0;
+        if (array.isEmpty()) {
+            throw new RuntimeException("ArrayOperations.arrayMax - array is empty");
+        }
+
+        int max = array.get(0);
+
+        for (Integer value : array) {
+            if (value > max) {
+                max = value;
+            }
+        }
+
+        return max;
     }
 
     /**
