@@ -1,0 +1,25 @@
+-- 1) otvoreni racuni
+SELECT count(*) FROM racun WHERE datum_zatvaranja is not null;
+
+-- 2) podaci o klijentima iz Italije
+SELECT cli.* FROM klijent cli 
+JOIN racun acc ON acc.klijent_id = cli.klijent_id 
+WHERE cli.drzava = 'IT' 
+-- ako zelimo samo aktivne racune
+-- AND acc.datum_zatvaranja is null;
+
+-- 3)
+
+
+-- 4)
+SELECT acc.* FROM racun acc
+WHERE acc.datum_zatvaranja is not null 
+AND 0 <> (SELECT SUM(trx.iznos) FROM trans trx where trx.racun_id = acc.racun_id) ;
+
+-- alternativni pokusaj bez ugnjezdenog upita; vjer nije ispravno sintakticki, ovo je vise idejno kako bi bilo bolje napisati upit
+SELECT acc.* FROM racun acc
+JOIN trans trx on trx.racun_id = acc.racun_id 
+WHERE acc.datum_zatvaranja is not null 
+GROUP BY acc.racun_id
+HAVING SUM(trx.iznos) ;
+
