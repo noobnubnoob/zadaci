@@ -10,6 +10,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <title>Save Employee</title>
+
+    <style>
+        .error {color:red}
+    </style>
 </head>
 
 <body>
@@ -29,18 +33,38 @@
 
         <input type="text" th:field="*{iban}"
                class="form-control mb-4 w-25" placeholder="IBAN">
+        <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('iban')}"
+              th:errors="*{iban}"
+              class="error">
+        </span>
 
         <input type="text" th:field="*{tipRacuna}"
                class="form-control mb-4 w-25" placeholder="Tip računa">
+        <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('tipRacuna')}"
+              th:errors="*{tipRacuna}"
+              class="error">
+        </span>
 
         <input type="text" th:field="*{valuta}"
                class="form-control mb-4 w-25" placeholder="Valuta">
+        <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('valuta')}"
+              th:errors="*{valuta}"
+              class="error">
+        </span>
 
         <input type="text" th:field="*{klijentId}"
                class="form-control mb-4 w-25" placeholder="Klijent ID">
 
         <input type="date" th:field="*{datumOtvaranja}"
                class="form-control mb-4 w-25" placeholder="Datum otvaranja">
+        <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('datumOtvaranja')}"
+              th:errors="*{datumOtvaranja}"
+              class="error">
+        </span>
 
         <input type="date" th:field="*{datumZatvaranja}"
                class="form-control mb-4 w-25" placeholder="Datum zatvaranja">
