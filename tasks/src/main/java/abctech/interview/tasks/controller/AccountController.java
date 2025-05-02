@@ -1,6 +1,5 @@
 package abctech.interview.tasks.controller;
 
-import abctech.interview.tasks.dao.AccountRepository;
 import abctech.interview.tasks.entity.Account;
 import abctech.interview.tasks.service.AccountService;
 import org.springframework.stereotype.Controller;
